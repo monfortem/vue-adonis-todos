@@ -12,7 +12,7 @@ export default class TasksController {
 
         AuthorizationService.verifyPermission({ resourceId: project.userId, userId: user.id })
         
-        const tasks = await Task.query().where('projectId', project.id)
+        const tasks = await Task.query().where('projectId', project.id).orderBy('id', 'desc')
         
         return tasks
     }
@@ -32,6 +32,32 @@ export default class TasksController {
         })
         
         await task.related('project').associate(project)
+
+        return task
+    }
+
+    async destroy(ctx: HttpContextContract) {
+        const user = await User.findOrFail(ctx.auth.user?.id)
+        const { id } = ctx.params
+        const task = await Task.findOrFail(id)
+        const project = await Project.findOrFail(task.projectId)
+
+        AuthorizationService.verifyPermission({ resourceId: project.userId, userId: user.id })
+
+        await task.delete()
+        return task
+    }
+
+    async update(ctx: HttpContextContract) {
+        const user = await User.findOrFail(ctx.auth.user?.id)
+        const { id } = ctx.params
+        const task = await Task.findOrFail(id)
+        const project = await Project.findOrFail(task.projectId)
+
+        AuthorizationService.verifyPermission({ resourceId: project.userId, userId: user.id })
+
+        task.merge(ctx.request.only(['description']))
+        await task.save()
 
         return task
     }
