@@ -4,13 +4,13 @@ import Project from 'App/Models/Project'
 import AuthorizationService from 'App/Services/AuthorizationService'
 
 export default class ProjectsController {
-    public async index(ctx: HttpContextContract) {
+    async index(ctx: HttpContextContract) {
         const user = await User.findOrFail(ctx.auth.user?.id)
-        const projects = await Project.query().where('userId', user.id)
+        const projects = await Project.query().where('userId', user.id).orderBy('id', 'desc')
         return projects
     }
 
-    public async create(ctx: HttpContextContract) {
+    async create(ctx: HttpContextContract) {
         const user = await User.findOrFail(ctx.auth.user?.id)
         const { title } = ctx.request.all()
         const project = new Project()
@@ -24,7 +24,7 @@ export default class ProjectsController {
         return project
     }
 
-    public async destroy(ctx: HttpContextContract) {
+    async destroy(ctx: HttpContextContract) {
         const user = await User.findOrFail(ctx.auth.user?.id)
         const { id } = ctx.params
         const project = await Project.findOrFail(id)
@@ -35,7 +35,7 @@ export default class ProjectsController {
         return project
     }
 
-    public async update(ctx: HttpContextContract) {
+    async update(ctx: HttpContextContract) {
         const user = await User.findOrFail(ctx.auth.user?.id)
         const { id } = ctx.params
         const project = await Project.findOrFail(id)
