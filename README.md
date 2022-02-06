@@ -16,3 +16,5 @@ Learning:
  - VS Code Remote Development (v0.209.6)
  - Node (v16)
  - adonisjs (v5.4)
+ - vuejs (v2)
+ - vuetify (v2.6.3)
