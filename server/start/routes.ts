@@ -25,12 +25,8 @@ Route
     Route.post('auth/register', 'UsersController.register')
     Route.post('auth/login', 'UsersController.login')
 
-    Route
-    .get('projects', 'ProjectsController.index')
-    .middleware('auth')
-
-    Route
-    .post('projects', 'ProjectsController.create')
-    .middleware('auth')
+    Route.get('projects', 'ProjectsController.index').middleware('auth')
+    Route.post('projects', 'ProjectsController.create').middleware('auth')
+    Route.delete('projects/:id', 'ProjectsController.destroy').middleware('auth')
   })
   .prefix('/api')
