@@ -10,6 +10,9 @@ export default class Task extends BaseModel {
   public description: string
 
   @column()
+  public completed: boolean
+
+  @column()
   public projectId: number
 
   @column.dateTime({ autoCreate: true })

@@ -56,7 +56,11 @@ export default class TasksController {
 
         AuthorizationService.verifyPermission({ resourceId: project.userId, userId: user.id })
 
-        task.merge(ctx.request.only(['description']))
+        task.merge({
+            description: ctx.request.input('description', task.description),
+            completed: ctx.request.input('completed', false)
+        })
+
         await task.save()
 
         return task

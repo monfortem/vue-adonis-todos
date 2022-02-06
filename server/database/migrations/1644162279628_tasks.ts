@@ -8,6 +8,7 @@ export default class Tasks extends BaseSchema {
       table.increments('id')
       table.integer('project_id').unsigned().references('id').inTable('projects').onDelete('CASCADE')
       table.string('description')
+      table.boolean('completed').defaultTo(false)
 
       /**
        * Uses timestamptz for PostgreSQL and DATETIME2 for MSSQL
