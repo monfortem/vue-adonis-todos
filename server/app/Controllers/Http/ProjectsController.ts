@@ -2,6 +2,7 @@ import { HttpContextContract } from '@ioc:Adonis/Core/HttpContext'
 import User from 'App/Models/User'
 import Project from 'App/Models/Project'
 import AuthorizationService from 'App/Services/AuthorizationService'
+import Projects from 'Database/migrations/1644118717439_projects'
 
 export default class ProjectsController {
     public async index(ctx: HttpContextContract) {
@@ -34,5 +35,19 @@ export default class ProjectsController {
 
         await project?.delete()
         return project
+    }
+
+    public async update(ctx: HttpContextContract) {
+        const user = await User.findOrFail(ctx.auth.user?.id)
+        const { id } = ctx.params
+        const project = await Project.find(id)
+
+        AuthorizationService.verifyPermission({ resourceId: project?.userId, userId: user.id })
+
+        project?.merge(ctx.request.only(['title']))
+        await project?.save()
+
+        return project
+
     }
 }

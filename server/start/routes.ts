@@ -28,5 +28,6 @@ Route
     Route.get('projects', 'ProjectsController.index').middleware('auth')
     Route.post('projects', 'ProjectsController.create').middleware('auth')
     Route.delete('projects/:id', 'ProjectsController.destroy').middleware('auth')
+    Route.patch('projects/:id', 'ProjectsController.update').middleware('auth')
   })
   .prefix('/api')
