@@ -42,7 +42,10 @@ export default class ProjectsController {
 
         AuthorizationService.verifyPermission({ resourceId: project.userId, userId: user.id })
 
-        project.merge(ctx.request.only(['title']))
+        project.merge({
+            title: ctx.request.input('title', project.title)
+        })
+        
         await project.save()
 
         return project
