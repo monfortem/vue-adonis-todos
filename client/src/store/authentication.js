@@ -8,6 +8,10 @@ export default {
     registerPassword: null,
     registerError: null,
     registerErrorShow: false,
+    loginEmail: null,
+    loginPassword: null,
+    loginError: null,
+    loginErrorShow: false,
     token: null
   },
   actions: {
@@ -28,6 +32,20 @@ export default {
         .catch(() => {
           commit('setRegisterError', 'Account already exists')
         })
+    },
+    login ({ commit, state }) {
+      commit('setLoginError', null)
+      return HTTP().post('/auth/login', {
+        email: state.loginEmail,
+        password: state.loginPassword
+      })
+        .then(({ data }) => {
+          commit('setToken', data.token)
+          router.push('/')
+        })
+        .catch(() => {
+          commit('setLoginError', 'Login attempt failed')
+        })
     }
   },
   getters: {
@@ -44,6 +62,14 @@ export default {
         state.registerErrorShow = false
       }
     },
+    setLoginError (state, error) {
+      state.loginError = error
+      if (error) {
+        state.loginErrorShow = true
+      } else {
+        state.loginErrorShow = false
+      }
+    },
     setToken (state, token) {
       state.token = token
     },
@@ -52,6 +78,12 @@ export default {
     },
     setRegisterPassword (state, password) {
       state.registerPassword = password
+    },
+    setLoginEmail (state, email) {
+      state.loginEmail = email
+    },
+    setLoginPassword (state, password) {
+      state.loginPassword = password
     }
   }
 }

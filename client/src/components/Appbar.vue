@@ -8,7 +8,7 @@
         dense
         elevation="4"
       >
-        <v-toolbar-title>VUE Todo</v-toolbar-title>
+        <v-toolbar-title style="cursor: pointer" @click="$router.push('/')">VUE Todo</v-toolbar-title>
         <v-btn plain v-if="isLoggedIn">
           <v-icon>mdi-playlist-check</v-icon>
           PROJECTS
@@ -18,7 +18,7 @@
           <v-icon>mdi-account-box-outline</v-icon>
           Register
         </v-btn>
-        <v-btn plain v-if="!isLoggedIn">
+        <v-btn plain to="/login" v-if="!isLoggedIn">
           <v-icon>mdi-fingerprint</v-icon>
           Login
         </v-btn>
