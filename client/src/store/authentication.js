@@ -8,8 +8,8 @@ export default {
     registerPassword: null,
     registerError: null,
     registerErrorShow: false,
-    loginEmail: null,
-    loginPassword: null,
+    loginEmail: 'test1@example.com',
+    loginPassword: 'password',
     loginError: null,
     loginErrorShow: false,
     token: null
