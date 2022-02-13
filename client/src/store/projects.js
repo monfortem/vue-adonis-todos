@@ -1,5 +1,4 @@
 import Vue from 'vue'
-// import router from '../router'
 import HTTP from '../http'
 
 export default {
@@ -27,7 +26,7 @@ export default {
     updateProject ({ commit }, project) {
       return HTTP().patch(`/projects/${project.id}`, project)
         .then(() => {
-          commit('unsetIsEditMode', project)
+          commit('unsetEditMode', project)
         })
     },
     deleteProject ({ commit }, project) {
@@ -61,10 +60,10 @@ export default {
     setProjects (state, projects) {
       state.projects = projects
     },
-    setIsEditMode (state, project) {
+    setEditMode (state, project) {
       Vue.set(project, 'isEditMode', true)
     },
-    unsetIsEditMode (state, project) {
+    unsetEditMode (state, project) {
       project.isEditMode = false
     }
   }
