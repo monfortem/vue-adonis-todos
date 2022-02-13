@@ -18,6 +18,7 @@
               autocomplete="new-password"
               :value="loginPassword"
               @input="setLoginPassword"
+              v-on:keyup.enter="login"
             ></v-text-field>
 
             <v-alert type="error" dense :value=loginErrorShow>{{ loginError }}</v-alert>
