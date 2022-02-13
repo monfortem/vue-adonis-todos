@@ -5,6 +5,7 @@ export default {
   namespaced: true,
   state: {
     projects: [],
+    currentProject: {},
     newProjectTitle: null
   },
   actions: {
@@ -40,6 +41,9 @@ export default {
 
   },
   mutations: {
+    setCurrentProject (state, project) {
+      state.currentProject = project
+    },
     setNewProjectTitle (state, title) {
       state.newProjectTitle = title
     },

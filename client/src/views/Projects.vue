@@ -4,21 +4,26 @@
       <v-col md="4">
         <Projects></Projects>
       </v-col>
-      <v-col md="8">
-        <Panel title="Tasks"></Panel>
+      <v-col md="8" v-if="Object.keys(currentProject).length > 0">
+        <Tasks></Tasks>
+      </v-col>
+      <v-col v-else>
+        <h3>Click on a project name to display tasks.</h3>
       </v-col>
     </v-row>
   </v-container>
 </template>
 
 <script>
-import { mapGetters } from 'vuex'
+import { mapGetters, mapState } from 'vuex'
 import Projects from '../components/Projects.vue'
+import Tasks from '../components/Tasks.vue'
 import router from '../router'
 
 export default {
   components: {
-    Projects
+    Projects,
+    Tasks
   },
   mounted () {
     if (!this.isLoggedIn) {
@@ -26,6 +31,9 @@ export default {
     }
   },
   computed: {
+    ...mapState('projects', [
+      'currentProject'
+    ]),
     ...mapGetters('authentication', [
       'isLoggedIn'
     ])

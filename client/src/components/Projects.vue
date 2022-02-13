@@ -11,6 +11,7 @@
                 project,
                 title: $event
             })"
+        v-on:onClick="projectClicked(project)"
         v-on:onEdit="setEditMode(project)"
         v-on:onUpdate="updateProject(project)"
         v-on:onDelete="deleteProject(project)"
@@ -51,16 +52,24 @@ export default {
     ])
   },
   methods: {
+    projectClicked (project) {
+      this.setCurrentProject(project)
+      this.fetchTasksForProject(project)
+    },
     ...mapMutations('projects', [
       'setNewProjectTitle',
       'setEditMode',
-      'setProjectTitle'
+      'setProjectTitle',
+      'setCurrentProject'
     ]),
     ...mapActions('projects', [
       'createProject',
       'fetchProjects',
       'updateProject',
       'deleteProject'
+    ]),
+    ...mapActions('tasks', [
+      'fetchTasksForProject'
     ])
   }
 }

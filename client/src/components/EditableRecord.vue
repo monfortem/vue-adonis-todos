@@ -1,6 +1,6 @@
 <template>
     <v-row class="pa-0 ma-0">
-        <v-col md="10" class="text-body-2">
+        <v-col md="10"  class="pa-0 ma-0">
             <v-text-field
                 autofocus
                 v-if="isEditMode"
@@ -9,9 +9,9 @@
                 @input="$emit('onInput', $event)"
             >
             </v-text-field>
-            <span v-else>{{title}}</span>
+            <span v-else @click="$emit('onClick')">{{title}}</span>
         </v-col>
-        <v-col md="2" class="d-flex align-center justify-center">
+        <v-col md="2" class="d-flex align-center justify-center pa-0 ma-0">
         <v-btn v-if="!isEditMode"
             icon
             color="green"
