@@ -1,6 +1,7 @@
 <template>
     <v-row class="pa-0 ma-0">
         <v-col md="10"  class="pa-0 ma-0">
+            <slot></slot>
             <v-text-field
                 autofocus
                 v-if="isEditMode"

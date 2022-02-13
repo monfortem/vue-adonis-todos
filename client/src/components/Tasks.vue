@@ -14,7 +14,17 @@
                 v-on:onEdit="setEditMode(task)"
                 v-on:onUpdate="updateTask(task)"
                 v-on:onDelete="deleteTask(task)"
-              />
+              >
+              <v-btn
+                icon
+                color="green"
+                @click="checkClicked(task)"
+              >
+                <v-icon>
+                  {{ task.completed ? 'mdi-checkbox-marked' : 'mdi-checkbox-blank-outline'}}
+                </v-icon>
+              </v-btn>
+              </EditableRecord>
           </div>
           <CreateRecord
             placeholder="I need to..."
@@ -51,8 +61,13 @@ export default {
     ...mapMutations('tasks', [
       'setNewTaskName',
       'setEditMode',
-      'setTaskDescription'
-    ])
+      'setTaskDescription',
+      'toggleCompleted'
+    ]),
+    checkClicked (task) {
+      this.toggleCompleted(task)
+      this.updateTask(task)
+    }
   }
 }
 </script>
