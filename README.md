@@ -18,3 +18,6 @@ Learning:
  - adonisjs (v5.4)
  - vuejs (v2)
  - vuetify (v2.6.3)
+
+### Thoughts
+TBD
