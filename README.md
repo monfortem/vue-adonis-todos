@@ -20,9 +20,6 @@ Learning:
  - vuetify (v2.6.3)
 
 ### Thoughts
-<<<<<<< HEAD
-TBD
-=======
 Overall, the tutorial good. I did need to make minor adjustments to my code where the newer framework version required it.
 
 I was very impressed with vs code remote development. Just by opening a folder, I was able to start the container and begin developing with the extensions included.
@@ -31,5 +28,4 @@ This was my first interaction with an [ORM](https://en.wikipedia.org/wiki/Object
 
 [Vuejs](https://vuejs.org/) wasn't as intuitive to me when compared to the Adonisjs framework. The documentation, again, was great and very helpful when troubleshooting. The overall structure made sense as well as how the components were segregated but I need to continue practicing with it.
 
-[Vuetify](https://vuetifyjs.com) was fun to use. The documentation was great and easy to follow along. 
->>>>>>> b2e8198 (added final thoughts)
+[Vuetify](https://vuetifyjs.com) was fun to use. The documentation was great and easy to follow along.
